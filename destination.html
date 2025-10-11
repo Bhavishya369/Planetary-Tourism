@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* Your existing CSS styles remain the same */
+        /* Styles for the destination page */
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin: 0;
-            overflow: auto;
+            overflow: auto; /* Enable scrolling */
             background: url("Your-Background-Video-URL.mp4") no-repeat center center fixed;
             background-size: cover;
         }
 
+        /* Add a back arrow link in the top left corner */
         .back-arrow {
             position: absolute;
             top: 10px;
@@ -24,31 +25,34 @@
             justify-content: center;
             width: 40px;
             height: 40px;
-            background-color: darkblue;
+            background-color: darkblue; /* Dark blue background for the circle */
             border-radius: 50%;
-            color: white;
+            color: white; /* Text color is white */
             text-decoration: none;
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 24px; /* Increase font size for the arrow */
+            font-weight: bold; /* Make the arrow thicker */
         }
 
+        /* Transparent box for the heading with outline */
         .heading-box {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 10px;
-            display: inline-block;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+            padding: 10px; /* Add padding to the box */
+            border-radius: 10px; /* Rounded corners for the box */
+            display: inline-block; /* Make the box inline-block to fit content */
         }
 
+        /* White text for the heading */
         .destination-heading {
             font-size: 36px;
             font-weight: bold;
             text-align: center;
             margin-top: 20px;
-            color: white;
-            outline: 2px solid white;
-            padding: 5px 10px;
+            color: white; /* Text color is white */
+            outline: 2px solid white; /* Add a white outline */
+            padding: 5px 10px; /* Add padding inside the outline */
         }
 
+        /* Styles for the container holding the planets */
         .container {
             display: flex;
             flex-direction: column;
@@ -56,62 +60,66 @@
             margin-top: 20px;
         }
 
+        /* Style for each planet */
         .planet {
-            width: 30cm;
-            height: 8cm;
-            background-color: rgba(255, 255, 255, 0.7);
-            border: 1px solid black;
+            width: 30cm; /* Set the width to 30cm for the rectangles */
+            height: 8cm; /* Set the height to 8cm for the rectangles */
+            background-color: rgba(255, 255, 255, 0.7); /* Translucent white background */
+            border: 1px solid black; /* Add a border for visibility */
             display: flex;
             align-items: center;
-            margin-top: 2.5cm;
-            transition: transform 0.3s;
-            position: relative;
-            cursor: pointer;
-            border-radius: 15px;
-            overflow: hidden;
+            margin-top: 2.5cm; /* Add 2.5cm gap between planets */
+            transition: transform 0.3s; /* Add a smooth transition effect */
+            position: relative; /* Relative positioning for booking info */
+            cursor: pointer; /* Add a pointer cursor for clickable effect */
+            border-radius: 15px; /* Add border radius for a slight curve */
+            overflow: hidden; /* Hide overflow to make sure the curve looks good */
         }
 
+        /* Hover effect for the planet */
         .planet:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05); /* Scale up on hover */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Add a subtle shadow on hover */
         }
 
+        /* Styles for the planet name and video */
         .planet-info {
             display: flex;
             align-items: center;
-            width: 100%;
+            width: 100%; /* Take the full width of the rectangle */
         }
 
         .planet-name {
             font-size: 24px;
-            flex-grow: 1;
-            text-align: center;
+            flex-grow: 1; /* Allow the planet name to occupy available space */
+            text-align: center; /* Center-align the planet name */
         }
 
         .planet-name h1 {
-            font-size: 36px;
-            margin: 0;
+            font-size: 36px; /* Change font size to 36px for h1 */
+            margin: 0; /* Remove margin for h1 */
         }
 
         .planet-video {
-            width: 50%;
-            height: 100%;
-            border-radius: 0;
-            object-fit: cover;
+            width: 50%; /* Set the width to 50% to fill half of the left side */
+            height: 100%; /* Set the height to 100% to fill the entire height */
+            border-radius: 0; /* Remove border radius */
+            object-fit: cover; /* Ensure the video covers the allocated space */
         }
 
+        /* Style for the "Return to Home Planet" section */
         .return-section {
             width: 30cm;
             height: 5cm;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
             border: 1px solid black;
             display: flex;
             align-items: center;
-            margin-top: 2.5cm;
-            justify-content: flex-end;
-            padding-right: 10px;
-            border-radius: 15px;
-            overflow: hidden;
+            margin-top: 2.5cm; /* Add 2.5cm gap between the "Return" section and the planets */
+            justify-content: flex-end; /* Align content to the right */
+            padding-right: 10px; /* Add right padding */
+            border-radius: 15px; /* Add border radius to the return section */
+            overflow: hidden; /* Hide overflow to make sure the curve looks good */
         }
 
         .return-text {
@@ -132,25 +140,28 @@
             object-fit: cover;
         }
 
+        /* Yellow rectangle for booking info */
         .booking-info {
             position: absolute;
             bottom: 0;
             right: 0;
-            background-color: yellow;
-            color: green;
-            padding: 5px 10px;
-            font-weight: bold;
+            background-color: yellow; /* Yellow background color */
+            color: green; /* Neon green font color */
+            padding: 5px 10px; /* Add padding to the text */
+            font-weight: bold; /* Make the font bold */
         }
 
+        /* Styles for the background video container */
         #background-video-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            z-index: -1; /* Place it behind other elements */
         }
 
+        /* Style for the background video element */
         #background-video {
             width: 100%;
             height: 100%;
@@ -255,14 +266,28 @@
     <script>
         // Function to navigate to planet details page
         function navigateToDetails(planet) {
-            // Convert planet to lowercase for consistency
+            // Convert to lowercase for consistent handling
             const planetLower = planet.toLowerCase();
             
-            if (planetLower === 'mercury') {
-                window.location.href = 'next_page.html';
+            // Define mapping between planet names and their HTML files
+            const planetPages = {
+                'mercury': 'next_page.html',
+                'venus': 'venus.html',
+                'earth': 'earth.html',
+                'mars': 'mars.html',
+                'jupiter': 'jupiter.html',
+                'saturn': 'saturn.html',
+                'uranus': 'uranus.html',
+                'neptune': 'neptune.html'
+            };
+            
+            // Check if we have a page for this planet
+            if (planetPages[planetLower]) {
+                window.location.href = planetPages[planetLower];
             } else {
-                // Use lowercase file names for GitHub Pages compatibility
-                window.location.href = planetLower + '.html';
+                // Fallback - try to redirect to a page with the planet name
+                console.warn(`No page defined for planet: ${planet}`);
+                window.location.href = planetLower + ".html";
             }
         }
     </script>
