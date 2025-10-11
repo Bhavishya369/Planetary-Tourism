@@ -191,7 +191,7 @@
     <!-- Container for the planets -->
     <div class="container">
         <!-- Return to Home Planet -->
-        <div class="planet" id="earth-planet" onclick="navigateToDetails('earth')">
+        <div class="planet" id="Earth-planet" onclick="navigateToDetails('earth')">
             <img class="planet-video earth-image" src="https://img.freepik.com/premium-photo/astronaut-outer-open-space-planet-earth-stars-provide-background-erforming-space-planet-earth-sunrise-sunset-our-home-iss-elements-this-image-furnished-by-nasa_150455-16829.jpg" alt="Earth">
             <div class="planet-name">
                 <h1>Return to Home Planet</h1>
@@ -269,9 +269,31 @@
             if (planet === 'mercury') {
                 // Redirect to the next_page.html when Mercury is clicked
                 window.location.href = 'next_page.html';
-            } else {
+            }
+            else if (planet === 'venus') {
+                window.location.href = 'venus.html';    
+            }
+            else if (planet === 'Earth') {
+                window.location.href = 'Earth.html';    
+            }
+            else if (planet === 'Mars') {
+                window.location.href = 'Mars.html';    
+            }
+            else if (planet === 'Jupiter') {
+                window.location.href = 'Jupiter.html';    
+            }
+            else if (planet === 'Saturn') {
+                window.location.href = 'Saturn.html';    
+            }
+            else if (planet === 'Uranus') {
+                window.location.href = 'Uranus.html';    
+            }
+            else if (planet === 'Neptune') {
+                window.location.href = 'Neptune.html';    
+            }
+             else {
                 // For other planets, redirect to their respective HTML pages
-                window.location.href = planet +".html";
+                window.location.href = planet + ".html";
             }
         }
     </script>
