@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Ticket</title>
+    <style>
+        body {
+            background-image: url('https://as2.ftcdn.net/v2/jpg/04/35/16/59/1000_F_435165987_CF5swMVMwbSboDpqWXeq39QJMQSop6Hs.jpg');
+            background-size: cover;
+            color: rgb(255, 255, 255);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        .button {
+            background-color: yellow;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: #ffcc00;
+        }
+        .success-box {
+            background-color: white;
+            width: 100%;
+            min-height: 4cm;
+            padding: 20px;
+            border-radius: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            text-align: center;
+        }
+        .dark-grey-box {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .success-text {
+            color: rgb(255, 255, 255);
+            font-size: 24px;
+        }
+        .circle {
+            width: 1cm;
+            height: 1cm;
+            background-color: rgb(0, 255, 0);
+            border: 2px solid rgb(155, 255, 155);
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .success-icon {
+            color: black;
+            font-size: 0.7cm;
+        }
+        .option-buttons {
+            margin-top: 10px;
+        }
+        .yes-no-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+            width: 100%;
+        }
+        .back-button-circle {
+            background-color: #0000AA;
+            width: 1cm;
+            height: 1cm;
+            border-radius: 50%;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5em;
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+        }
+        .back-button:hover {
+            background-color: #0000AA;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        input {
+            width: 100%;
+            padding: 5px;
+        }
+
+        /* Additional CSS for confirming message */
+        .confirming-box {
+            background-color: white;
+            width: 100%;
+            min-height: 4cm;
+            padding: 20px;
+            border-radius: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        /* CSS for animation */
+        .loader {
+            width: 100px;
+            height: 100px;
+            border: none;
+            background: url('https://cdn.dribbble.com/users/475723/screenshots/2666648/media/ee00998b061575d66e29e52e07ef7d46.gif') center no-repeat;
+            background-size: cover;
+            margin: 0 auto;
+            animation: dot-animation 1.5s infinite; /* Add dot animation */
+        }
+
+        /* Keyframes for dot animation */
+        @keyframes dot-animation {
+            0%, 25% { content: "Confirming"; }
+            50% { content: "Confirming."; }
+            75% { content: "Confirming.."; }
+            100% { content: "Confirming..."; }
+        }
+
+        /* Style for confirming text */
+        .confirming-text {
+            font-weight: bold;
+            font-size: 20px;
+            color: black;
+        }
+
+        /* Style for additional message in success box */
+        .success-message {
+            color: white; /* Change the text color to white */
+            font-weight: bold;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book a Ticket</h1>
+        <form id="booking-form">
+            <label for="date">Journey Date</label>
+            <input type="date" id="date" name="date" required><br>
+            <label for="card-id">Card ID:</label>
+            <input type="text" id="card-id" name="card-id" required><br>
+            <label for="card-password">Card Password:</label>
+            <input type="password" id="card-password" name="card-password" required><br>
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required><br>
+            <button class="button" id="book-now-button">Book Now</button>
+            <div class="success-box" id="success-box" style="display: none;">
+                <div class="dark-grey-box">
+                    <p class="success-text">You have successfully booked a ticket to the selected planet</p>
+                    <!-- Updated success message and box color -->
+                    <div class="circle">
+                        <div class="success-icon">&#10004;</div>
+                    </div>
+                    <p class="success-message">Do you want to book another ticket?</p>
+                    <div class="option-buttons">
+                        <div class="yes-no-buttons">
+                            <button class="button" id="yes-button" onclick="window.location.href='destination.html'">Yes</button>
+                            <button class="button" id="no-button" onclick="window.location.href='index.html'">No</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="back-button-circle">
+                    <button class="back-button" id="back-button">&#8592;</button>
+                </div> -->
+            </div>
+            <div class="confirming-box" id="confirming-box" style="display: none;">
+                <!-- Replace the existing .loader with an img element -->
+                <div class="loader"></div>
+                <!-- Updated confirming text style -->
+                <p class="confirming-text">Confirming...</p>
+            </div>
+        </form>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="success-audio">
+        <source src="payment.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        let successBoxVisible = false;
+        let confirmingBoxVisible = false;
+
+        // Get the audio element
+        const successAudio = document.getElementById("success-audio");
+
+        // Function to play the audio
+        function playSuccessAudio() {
+            successAudio.play();
+        }
+
+        // Function to stop the audio (if needed)
+        function stopSuccessAudio() {
+            successAudio.pause();
+            successAudio.currentTime = 0;
+        }
+
+        // Function to update confirming box visibility
+        function updateConfirmingBoxVisibility() {
+            const confirmingBox = document.getElementById("confirming-box");
+            if (confirmingBoxVisible) {
+                confirmingBox.style.display = "block";
+            } else {
+                confirmingBox.style.display = "none";
+            }
+        }
+
+        // Function to update success box visibility
+        function updateSuccessBoxVisibility() {
+            const successBox = document.getElementById("success-box");
+            if (successBoxVisible) {
+                successBox.style.display = "block";
+            } else {
+                successBox.style.display = "none";
+            }
+        }
+
+        // Add an event listener to the form for form submission
+        const bookingForm = document.getElementById("booking-form");
+        bookingForm.addEventListener("submit", function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+
+            // Validate the input fields before submitting
+            const dateInput = document.getElementById("date");
+            const cardIdInput = document.getElementById("card-id");
+            const cardPasswordInput = document.getElementById("card-password");
+            const countryInput = document.getElementById("country");
+
+            if (
+                dateInput.value.trim() === "" ||
+                cardIdInput.value.trim() === "" ||
+                cardPasswordInput.value.trim() === "" ||
+                countryInput.value.trim() === ""
+            ) {
+                // If any of the fields are empty, display an error message or take other action
+                alert("Please fill in all the required fields.");
+            } else {
+                // If all fields are filled, you can submit the form or perform other actions here
+                // For now, we'll simply submit the form
+                confirmingBoxVisible = true;
+                updateConfirmingBoxVisibility();
+                setTimeout(function() {
+                    confirmingBoxVisible = false;
+                    successBoxVisible = true;
+                    updateConfirmingBoxVisibility();
+                    updateSuccessBoxVisibility();
+                    playSuccessAudio(); // Play the audio
+                }, 3000); // Wait for 3 seconds before showing the success message
+            }
+        });
+
+        // Update the code to stop the audio when hiding the success box (if needed)
+        document.getElementById("back-button").addEventListener("click", function() {
+            successBoxVisible = false;
+            updateSuccessBoxVisibility();
+            stopSuccessAudio(); // Stop the audio
+        });
+    </script>
+</body>
+</html>

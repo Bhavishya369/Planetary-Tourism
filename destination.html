@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Styles for the destination page */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            overflow: auto; /* Enable scrolling */
+            background: url("Your-Background-Video-URL.mp4") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Add a back arrow link in the top left corner */
+        .back-arrow {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: darkblue; /* Dark blue background for the circle */
+            border-radius: 50%;
+            color: white; /* Text color is white */
+            text-decoration: none;
+            font-size: 24px; /* Increase font size for the arrow */
+            font-weight: bold; /* Make the arrow thicker */
+        }
+
+        /* Transparent box for the heading with outline */
+        .heading-box {
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+            padding: 10px; /* Add padding to the box */
+            border-radius: 10px; /* Rounded corners for the box */
+            display: inline-block; /* Make the box inline-block to fit content */
+        }
+
+        /* White text for the heading */
+        .destination-heading {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            color: white; /* Text color is white */
+            outline: 2px solid white; /* Add a white outline */
+            padding: 5px 10px; /* Add padding inside the outline */
+        }
+
+        /* Styles for the container holding the planets */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        /* Style for each planet */
+        .planet {
+            width: 30cm; /* Set the width to 30cm for the rectangles */
+            height: 8cm; /* Set the height to 8cm for the rectangles */
+            background-color: rgba(255, 255, 255, 0.7); /* Translucent white background */
+            border: 1px solid black; /* Add a border for visibility */
+            display: flex;
+            align-items: center;
+            margin-top: 2.5cm; /* Add 2.5cm gap between planets */
+            transition: transform 0.3s; /* Add a smooth transition effect */
+            position: relative; /* Relative positioning for booking info */
+            cursor: pointer; /* Add a pointer cursor for clickable effect */
+            border-radius: 15px; /* Add border radius for a slight curve */
+            overflow: hidden; /* Hide overflow to make sure the curve looks good */
+        }
+
+        /* Hover effect for the planet */
+        .planet:hover {
+            transform: scale(1.05); /* Scale up on hover */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Add a subtle shadow on hover */
+        }
+
+        /* Styles for the planet name and video */
+        .planet-info {
+            display: flex;
+            align-items: center;
+            width: 100%; /* Take the full width of the rectangle */
+        }
+
+        .planet-name {
+            font-size: 24px;
+            flex-grow: 1; /* Allow the planet name to occupy available space */
+            text-align: center; /* Center-align the planet name */
+        }
+
+        .planet-name h1 {
+            font-size: 36px; /* Change font size to 36px for h1 */
+            margin: 0; /* Remove margin for h1 */
+        }
+
+        .planet-video {
+            width: 50%; /* Set the width to 50% to fill half of the left side */
+            height: 100%; /* Set the height to 100% to fill the entire height */
+            border-radius: 0; /* Remove border radius */
+            object-fit: cover; /* Ensure the video covers the allocated space */
+        }
+
+        /* Style for the "Return to Home Planet" section */
+        .return-section {
+            width: 30cm;
+            height: 5cm;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            margin-top: 2.5cm; /* Add 2.5cm gap between the "Return" section and the planets */
+            justify-content: flex-end; /* Align content to the right */
+            padding-right: 10px; /* Add right padding */
+            border-radius: 15px; /* Add border radius to the return section */
+            overflow: hidden; /* Hide overflow to make sure the curve looks good */
+        }
+
+        .return-text {
+            font-size: 24px;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .return-text h2 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        .earth-image {
+            width: 50%;
+            height: 100%;
+            border-radius: 0;
+            object-fit: cover;
+        }
+
+        /* Yellow rectangle for booking info */
+        .booking-info {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: yellow; /* Yellow background color */
+            color: green; /* Neon green font color */
+            padding: 5px 10px; /* Add padding to the text */
+            font-weight: bold; /* Make the font bold */
+        }
+
+        /* Styles for the background video container */
+        #background-video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place it behind other elements */
+        }
+
+        /* Style for the background video element */
+        #background-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+    <title>Destination Selector</title>
+</head>
+<body>
+    <!-- Video container for background -->
+    <div id="background-video-container">
+        <video id="background-video" autoplay loop muted>
+            <source src="4k video ultra hd solar system _ space travel in (sun) moon and mars earth.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Add a link to navigate back to the previous page (login.html) -->
+    <a class="back-arrow" href="login.html">&#8592;</a>
+    
+    <!-- Transparent box for the heading with outline -->
+    <div class="heading-box">
+        <!-- Add the heading with white text and outline -->
+        <h1 class="destination-heading">Choose Your Destination Planet</h1>
+    </div>
+
+    <!-- Container for the planets -->
+    <div class="container">
+        <!-- Return to Home Planet -->
+        <div class="planet" id="earth-planet" onclick="navigateToDetails('earth')">
+            <img class="planet-video earth-image" src="https://img.freepik.com/premium-photo/astronaut-outer-open-space-planet-earth-stars-provide-background-erforming-space-planet-earth-sunrise-sunset-our-home-iss-elements-this-image-furnished-by-nasa_150455-16829.jpg" alt="Earth">
+            <div class="planet-name">
+                <h1>Return to Home Planet</h1>
+                <div class="booking-info">Free!</div>
+            </div>
+        </div>
+
+        <!-- Mercury -->
+        <div class="planet" id="mercury-planet" onclick="navigateToDetails('mercury')">
+            <img class="planet-video" src="https://wallpapercave.com/wp/wp4047226.jpg" alt="Mercury">
+            <div class="planet-name">
+                <h1>Mercury</h1>
+                <div class="booking-info">Book now for Rs 9,999 /day</div>
+            </div>
+        </div>
+
+        <!-- Venus -->
+        <div class="planet" id="venus-planet" onclick="navigateToDetails('venus')">
+            <img class="planet-video" src="https://wallpaperaccess.com/full/1771169.jpg" alt="Venus">
+            <div class="planet-name">
+                <h1>Venus</h1>
+                <div class="booking-info">Book now for Rs 9,999 /day</div>
+            </div>
+        </div>
+
+        <!-- Mars -->
+        <div class="planet" id="mars-planet" onclick="navigateToDetails('mars')">
+            <img class="planet-video" src="https://wallpaperaccess.com/full/538127.jpg" alt="Mars">
+            <div class="planet-name">
+                <h1>Mars</h1>
+                <div class="booking-info">Book now for Rs 9,999 /day</div>
+            </div>
+        </div>
+
+        <!-- Jupiter -->
+        <div class="planet" id="jupiter-planet" onclick="navigateToDetails('jupiter')">
+            <img class="planet-video" src="https://wallpaperaccess.com/full/223952.jpg" alt="Jupiter">
+            <div class="planet-name">
+                <h1>Jupiter</h1>
+                <div class="booking-info">Book now for Rs 9,999 /day</div>
+            </div>
+        </div>
+
+        <!-- Saturn -->
+        <div class="planet" id="saturn-planet" onclick="navigateToDetails('saturn')">
+            <img class="planet-video" src="https://starwalk.space/gallery/images/saturn-planet-guide/1360x765.jpg" alt="Saturn">
+            <div class="planet-name">
+                <h1>Saturn</h1>
+                <div class="booking-info">Book now for Rs 9,999 /day</div>
+            </div>
+        </div>
+
+        <!-- Uranus -->
+        <div class="planet" id="uranus-planet" onclick="navigateToDetails('uranus')">
+            <img class="planet-video" src="https://c4.wallpaperflare.com/wallpaper/930/445/92/uranus-minimalism-space-wallpaper-preview.jpg" alt="Uranus">
+            <div class="planet-name">
+                <h1>Uranus</h1>
+                <div class="booking-info">Book now for Rs 9,999 /day</div>
+            </div>
+        </div>
+
+        <!-- Neptune -->
+        <div class="planet" id="neptune-planet" onclick="navigateToDetails('neptune')">
+            <img class="planet-video" src="https://www.shutterstock.com/shutterstock/videos/1077842513/thumb/1.jpg?ip=x480" alt="Neptune">
+            <div class="planet-name">
+                <h1>Neptune</h1>
+                <div class="booking-info">Book now for Rs 9,999 /day</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to navigate to planet details page
+        function navigateToDetails(planet) {
+            if (planet === 'mercury') {
+                // Redirect to the next_page.html when Mercury is clicked
+                window.location.href = 'next_page.html';
+            } else {
+                // For other planets, redirect to their respective HTML pages
+                window.location.href = planet + ".html";
+            }
+        }
+    </script>
+</body>
+</html>
